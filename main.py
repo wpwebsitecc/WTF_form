@@ -3,6 +3,7 @@ from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, SubmitField
 from wtforms.validators import DataRequired, Email
 import email_validator
+
 '''
 Red underlines? Install the required packages first: 
 Open the Terminal in PyCharm (bottom left). 
@@ -36,6 +37,8 @@ def home():
 def login():
     form = MyForm()
     form.validate_on_submit()
+    print(form.email.data)
+    print(form.password.data)
     return render_template('login.html', form=form)
 
 
