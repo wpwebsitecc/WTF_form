@@ -36,9 +36,16 @@ def home():
 @app.route("/login", methods=["GET", "POST"])
 def login():
     form = MyForm()
-    form.validate_on_submit()
-    print(form.email.data)
-    print(form.password.data)
+    if form.validate_on_submit():
+        submitted_email = form.email.data
+        submitted_password = form.password.data
+        check_email = "admin@email.com"
+        check_password = "12345678"
+        if submitted_email == check_email and submitted_password == check_password:
+            return render_template("success.html")
+        else:
+            return render_template("denied.html")
+
     return render_template('login.html', form=form)
 
 
