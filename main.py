@@ -1,9 +1,8 @@
-from flask import Flask, render_template, request, redirect
+from flask import Flask, render_template
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, SubmitField
 from wtforms.validators import DataRequired, Email
-import email_validator
-
+from flask_bootstrap import Bootstrap5
 '''
 Red underlines? Install the required packages first: 
 Open the Terminal in PyCharm (bottom left). 
@@ -26,6 +25,7 @@ class MyForm(FlaskForm):
 
 app = Flask(__name__)
 app.secret_key = "thisisascretkey"
+bootstrap = Bootstrap5(app)
 
 
 @app.route("/")
@@ -45,7 +45,6 @@ def login():
             return render_template("success.html")
         else:
             return render_template("denied.html")
-
     return render_template('login.html', form=form)
 
 
